@@ -107,6 +107,62 @@ function preview(name) {
     alert("Playing: " + name);
 }
 </script>
+<div id="previewBox" class="preview-box">
+    <div class="preview-content">
+        <span class="close" onclick="closePreview()">✕</span>
 
+        <img src="file_000000008dbc8211981b48491d42efcb.png"
+             alt="Emote Preview">
+
+        <h2 id="previewName">Emote 1</h2>
+        <p>✨ Emote Preview</p>
+    </div>
+</div>
+
+<style>
+.preview-box {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.preview-content {
+    width: 85%;
+    max-width: 400px;
+    background: #171720;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.preview-content img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+</style>
+
+<script>
+function preview(name) {
+    document.getElementById("previewName").innerText = name;
+    document.getElementById("previewBox").style.display = "flex";
+}
+
+function closePreview() {
+    document.getElementById("previewBox").style.display = "none";
+}
+</script>
 </body>
 </html>
