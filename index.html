@@ -1,69 +1,149 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FF Emote Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0b0b0f;
-            color: white;
-            text-align: center;
-        }
+<title>FF Emote Hub</title>
 
-        header {
-            padding: 30px 15px;
-            background: #15151d;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #08090f;
+    color: white;
+}
 
-        p {
-            color: #aaa;
-        }
+header {
+    text-align: center;
+    padding: 30px 15px;
+    background: linear-gradient(135deg,#15152a,#21143a);
+}
 
-        .search {
-            margin: 20px;
-        }
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
 
-        input {
-            width: 85%;
-            max-width: 500px;
-            padding: 14px;
-            border-radius: 10px;
-            border: none;
-            outline: none;
-            font-size: 16px;
-        }
+header p {
+    color: #aaa;
+}
 
-        .emotes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            padding: 20px;
-            max-width: 900px;
-            margin: auto;
-        }
+.panel {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+}
 
-        .card {
-            background: #171720;
-            padding: 20px;
-            border-radius: 15px;
-        }
+.section {
+    background: #151827;
+    border: 1px solid #303650;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
 
-        .card button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-    </style>
+label {
+    display: block;
+    margin: 12px 0 7px;
+    color: #cdb8ff;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #39405c;
+    border-radius: 12px;
+    background: #0d1120;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #9b6cff;
+}
+
+.search {
+    margin-bottom: 20px;
+}
+
+.emotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+    gap: 15px;
+}
+
+.card {
+    background: #101424;
+    border: 1px solid #2d3450;
+    border-radius: 16px;
+    padding: 12px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #050607;
+}
+
+.card h3 {
+    margin: 12px 0 5px;
+}
+
+.card p {
+    color: #999;
+    font-size: 13px;
+}
+
+.card button {
+    width: 100%;
+    padding: 11px;
+    border: 0;
+    border-radius: 10px;
+    background: #eee;
+    color: #111;
+    font-weight: bold;
+}
+
+.card.selected {
+    border: 2px solid #a66cff;
+}
+
+.send {
+    width: 100%;
+    padding: 16px;
+    border: 0;
+    border-radius: 14px;
+    background: linear-gradient(90deg,#704cff,#d43cff);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.status {
+    margin-top: 15px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #101b18;
+    color: #73e6ad;
+    display: none;
+    text-align: center;
+}
+
+.small {
+    color: #888;
+    font-size: 12px;
+}
+</style>
 </head>
 
 <body>
@@ -73,152 +153,199 @@ i<!DOCTYPE html>
     <p>Free Fire Emote Showcase</p>
 </header>
 
-<div class="search">
-    <input type="text" id="search" placeholder="Search emote...">
+<div class="panel">
+
+    <div class="section">
+
+        <label>🌍 SELECT SERVER</label>
+
+        <select id="server">
+            <option value="india">🇮🇳 India Server</option>
+        </select>
+
+        <label>🔢 TEAM CODE</label>
+
+        <input
+            id="teamCode"
+            type="text"
+            inputmode="numeric"
+            maxlength="7"
+            placeholder="7-digit code"
+        >
+
+        <div class="small">Exactly 7 digits required</div>
+
+        <label>👤 UID</label>
+
+        <input
+            id="uid"
+            type="text"
+            inputmode="numeric"
+            maxlength="15"
+            placeholder="7-15 digits"
+        >
+
+        <div class="small">UID required</div>
+
+    </div>
+
+    <div class="section">
+
+        <label>🔎 SEARCH EMOTES</label>
+
+        <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="Search by name or ID..."
+        >
+
+        <div class="emotes" id="emotes">
+
+            <div class="card" data-name="Emote 1 Legendary">
+                
+                <img
+                    src="file_000000008dbc8211981b48491d42efcb.png"
+                    alt="Emote 1"
+                >
+
+                <h3>Emote 1</h3>
+                <p>Legendary Emote</p>
+
+                <button onclick="selectEmote(this,'Emote 1','000000001')">
+                    SELECT
+                </button>
+
+            </div>
+
+            <div class="card" data-name="Emote 2 Dance">
+
+                <img
+                    src="file_000000008dbc8211981b48491d42efcb.png"
+                    alt="Emote 2"
+                >
+
+                <h3>Emote 2</h3>
+                <p>Dance Emote</p>
+
+                <button onclick="selectEmote(this,'Emote 2','000000002')">
+                    SELECT
+                </button>
+
+            </div>
+
+            <div class="card" data-name="Emote 3 Special">
+
+                <img
+                    src="file_000000008dbc8211981b48491d42efcb.png"
+                    alt="Emote 3"
+                >
+
+                <h3>Emote 3</h3>
+                <p>Special Emote</p>
+
+                <button onclick="selectEmote(this,'Emote 3','000000003')">
+                    SELECT
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <button class="send" onclick="sendEmote()">
+            🚀 SEND EMOTE TO TEAM
+        </button>
+
+        <div id="status" class="status"></div>
+
+    </div>
+
 </div>
 
-<div class="emotes">
-
-    <div class="card">
-        <img src="images/emote1.jpg" alt="Emote 1">
-     alt="Emote 1"
-     style="width:100%; border-radius:12px;">
-        <h2>Emote 1</h2>
-        <p>Legendary Emote</p>
-        <button onclick="preview('Emote 1')">▶ Preview</button>
-    </div>
-
-    <div class="card">
-        <img src="emote2.jpg" alt="Emote 2" style="width:100%; border-radius:12px;">
-        <h2>Emote 2</h2>
-        <p>Dance Emote</p>
-        <button onclick="preview('Emote 2')">▶ Preview</button>
-    </div>
-
-    <div class="card">
-        <h2>Emote 3</h2>
-        <p>Special Emote</p>
-        <button onclick="preview('Emote 3')">▶ Preview</button>
-    </div><script>
-const searchBox = document.getElementById("search");
-const cards = document.querySelectorAll(".card");
-
-searchBox.addEventListener("input", function () {
-    const text = this.value.toLowerCase();
-
-    cards.forEach(function (card) {
-        const name = card.innerText.toLowerCase();
-
-        if (name.includes(text)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
-        }
-    });
-});
 <script>
+
+let selectedEmote = null;
+
+function selectEmote(button, name, id) {
+
+    document.querySelectorAll(".card").forEach(card => {
+        card.classList.remove("selected");
+    });
+
+    button.parentElement.classList.add("selected");
+
+    selectedEmote = {
+        name: name,
+        id: id
+    };
+
+    showStatus("✅ " + name + " selected");
+}
+
+function sendEmote() {
+
+    const server = document.getElementById("server").value;
+    const teamCode = document.getElementById("teamCode").value.trim();
+    const uid = document.getElementById("uid").value.trim();
+
+    if (!/^\d{7}$/.test(teamCode)) {
+        showStatus("❌ Team Code exactly 7 digits hona chahiye");
+        return;
+    }
+
+    if (!/^\d{7,15}$/.test(uid)) {
+        showStatus("❌ UID 7-15 digits hona chahiye");
+        return;
+    }
+
+    if (!selectedEmote) {
+        showStatus("❌ Pehle ek emote select karo");
+        return;
+    }
+
+    showStatus(
+        "✅ Request ready: " +
+        selectedEmote.name +
+        " | UID: " +
+        uid
+    );
+
+    console.log({
+        server: server,
+        teamCode: teamCode,
+        uid: uid,
+        emoteId: selectedEmote.id
+    });
+}
+
+function showStatus(message) {
+
+    const box = document.getElementById("status");
+
+    box.style.display = "block";
+    box.textContent = message;
+}
+
 document.getElementById("search").addEventListener("input", function () {
 
-    let searchText = this.value.toLowerCase().trim();
-    let cards = document.querySelectorAll(".emotes .card");
+    const text = this.value.toLowerCase();
 
-    cards.forEach(function(card) {
+    document.querySelectorAll(".card").forEach(card => {
 
-        let title = card.querySelector("h2");
+        const name = card.dataset.name.toLowerCase();
 
-        if (title) {
-            let emoteName = title.textContent.toLowerCase();
-
-            if (emoteName.includes(searchText)) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        }
+        card.style.display =
+            name.includes(text) ? "" : "none";
 
     });
 
 });
+
 </script>
 
-</div>
-
-<script>
-function preview(name) {
-    alert("Playing: " + name);
-}
-</script>
-<div id="previewBox" class="preview-box">
-    <div class="preview-content">
-        <span class="close" onclick="closePreview()">✕</span>
-
-        <img src="file_000000008dbc8211981b48491d42efcb.png"
-             alt="Emote Preview">
-
-        <h2 id="previewName">Emote 1</h2>
-        <p>✨ Emote Preview</p>
-    </div>
-</div><div id="previewBox" class="preview-box">
-
-    <div class="preview-content">
-
-        <span class="close" onclick="closePreview()">✕</span>
-
-        <img src="file_000000008dbc8211981b48491d42efcb.png"
-             alt="Emote Preview">
-
-        <h2 id="previewName">Emote 1</h2>
-
-        <p>🔥 Emote Preview</p>
-
-    </div>
-
-</div>
-
-<style>
-.preview-box {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-.preview-content {
-    width: 85%;
-    max-width: 400px;
-    background: #171720;
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
-    position: relative;
-}
-
-.preview-content img {
-    width: 100%;
-    border-radius: 15px;
-}
-
-.close {
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    font-size: 25px;
-    cursor: pointer;
-}
-</style>
-
-<script>
-function preview(name) {
-    document.getElementById("previewName").innerText = name;
-    document.getElementById("previewBox").style.display = "flex";
-}
-
-function closePreview() {
-    document.getElementById("previewBox").style.display = "none";
-}
-</script>
 </body>
 </html>
