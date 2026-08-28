@@ -115,6 +115,29 @@ searchBox.addEventListener("input", function () {
         }
     });
 });
+<script>
+document.getElementById("search").addEventListener("input", function () {
+
+    let searchText = this.value.toLowerCase().trim();
+    let cards = document.querySelectorAll(".emotes .card");
+
+    cards.forEach(function(card) {
+
+        let title = card.querySelector("h2");
+
+        if (title) {
+            let emoteName = title.textContent.toLowerCase();
+
+            if (emoteName.includes(searchText)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        }
+
+    });
+
+});
 </script>
 
 </div>
