@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF Emote Hub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b0b0f;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            padding: 30px 15px;
+            background: #15151d;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        p {
+            color: #aaa;
+        }
+
+        .search {
+            margin: 20px;
+        }
+
+        input {
+            width: 85%;
+            max-width: 500px;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .emotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: #171720;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .card button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔥 FF Emote Hub</h1>
+    <p>Free Fire Emote Showcase</p>
+</header>
+
+<div class="search">
+    <input type="text" id="search" placeholder="Search emote...">
+</div>
+
+<div class="emotes">
+
+    <div class="card">
+        <h2>Emote 1</h2>
+        <p>Legendary Emote</p>
+        <button onclick="preview('Emote 1')">▶ Preview</button>
+    </div>
+
+    <div class="card">
+        <h2>Emote 2</h2>
+        <p>Dance Emote</p>
+        <button onclick="preview('Emote 2')">▶ Preview</button>
+    </div>
+
+    <div class="card">
+        <h2>Emote 3</h2>
+        <p>Special Emote</p>
+        <button onclick="preview('Emote 3')">▶ Preview</button>
+    </div>
+
+</div>
+
+<script>
+function preview(name) {
+    alert("Playing: " + name);
+}
+</script>
+
+</body>
+</html>
