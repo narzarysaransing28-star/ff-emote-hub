@@ -98,7 +98,24 @@
         <h2>Emote 3</h2>
         <p>Special Emote</p>
         <button onclick="preview('Emote 3')">▶ Preview</button>
-    </div>
+    </div><script>
+const searchBox = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+searchBox.addEventListener("input", function () {
+    const text = this.value.toLowerCase();
+
+    cards.forEach(function (card) {
+        const name = card.innerText.toLowerCase();
+
+        if (name.includes(text)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+</script>
 
 </div>
 
