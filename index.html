@@ -1,231 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>FF Emote Hub</title>
-
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #08090f;
-    color: white;
-}
-
-header {
-    text-align: center;
-    padding: 30px 15px;
-    background: linear-gradient(135deg, #15152a, #21143a);
-}
-
-header h1 {
-    margin: 0;
-    font-size: 32px;
-}
-
-header p {
-    color: #aaa;
-}
-
-.panel {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-}
-
-.section {
-    background: #151827;
-    border: 1px solid #303650;
-    border-radius: 18px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin: 12px 0 7px;
-    color: #cdb8ff;
-    font-weight: bold;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #39405c;
-    border-radius: 12px;
-    background: #0d1120;
-    color: white;
-    font-size: 16px;
-    outline: none;
-}
-
-input:focus,
-select:focus {
-    border-color: #9b6cff;
-}
-
-.small {
-    color: #888;
-    font-size: 12px;
-    margin-top: 6px;
-}
-
-.search {
-    margin-bottom: 20px;
-}
-
-.emotes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-}
-
-.card {
-    background: #101424;
-    border: 1px solid #2d3450;
-    border-radius: 16px;
-    padding: 12px;
-    text-align: center;
-}
-
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: contain;
-    border-radius: 12px;
-    background: #050607;
-}
-
-.card h3 {
-    margin: 12px 0 5px;
-}
-
-.card p {
-    color: #999;
-    font-size: 13px;
-}
-
-.card button {
-    width: 100%;
-    padding: 11px;
-    border: 0;
-    border-radius: 10px;
-    background: #eee;
-    color: #111;
-    font-weight: bold;
-}
-
-.card.selected {
-    border: 2px solid #a66cff;
-}
-
-.send {
-    width: 100%;
-    padding: 16px;
-    border: 0;
-    border-radius: 14px;
-    background: linear-gradient(90deg, #704cff, #d43cff);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.send:active {
-    transform: scale(0.98);
-}
-
-.status {
-    margin-top: 15px;
-    padding: 14px;
-    border-radius: 10px;
-    background: #101b18;
-    color: #73e6ad;
-    display: none;
-    text-align: center;
-    line-height: 1.6;
-}
-
-.players {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.player-box {
-    background: #101424;
-    border: 1px solid #2d3450;
-    border-radius: 14px;
-    padding: 12px;
-}
-
-@media (max-width: 600px) {
-    .panel {
-        padding: 12px;
-    }
-
-    .players {
-        grid-template-columns: 1fr;
-    }
-
-    header h1 {
-        font-size: 26px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>🔥 FF Emote Hub</h1>
-    <p>Free Fire Emote Showcase</p>
-</header>
-
-<div class="panel">
-
-    <!-- SERVER + TEAM -->
-    <div class="section">
-
-        <label>🌍 SELECT SERVER</label>
-
-        <select id="server">
-            <option value="india">🇮🇳 India Server</option>
-        </select>
-
-        <label>🔢 TEAM CODE</label>
-
-        <input
-            id="teamCode"
-            type="text"
-            inputmode="numeric"
-            maxlength="7"
-            placeholder="Enter 7-digit Team Code"
-        >
-
-        <div class="small">
-            Team Code must contain exactly 7 digits.
-        </div>
-
-    </div>
-
-
-    <!-- PLAYERS -->
-    <div class="section">
-
-        <label>👥 TEAM PLAYERS</label>
-
-        <div class="players">
-
-            <div class="player-box">
-                <label>👤 PLAYER 1 UID</label>
 
                 <input
                     id="uid1"
@@ -281,57 +53,112 @@ select:focus {
             Player 1 required. Player 2–4 optional.
         </div>
 
-    </div>
-
-
-    <!-- EMOTES -->
-    <div class="section">
-
-        <label>🔎 SEARCH EMOTES</label>
-
-        <input
-            id="search"
-            class="search"
-            type="text"
-            placeholder="Search by name..."
-        >
-
-
-        <div class="emotes" id="emotes">
-
-
-            <!-- EMOTE 1 -->
-
-            <div
-                class="card"
-                data-name="Emote 1 Legendary"
-            >
-
-                <img
-                    src="emotes/emote1.jpg"
-                    alt="Emote 1"
+                <input
+                    id="uid1"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="15"
+                    placeholder="Player 1 UID"
                 >
-
-                <h3>Emote 1</h3>
-
-                <p>
-                    Legendary Emote
-                </p>
-
-                <button
-                    onclick="selectEmote(
-                        this,
-                        'Emote 1',
-                        '000000001'
-                    )"
-                >
-                    SELECT
-                </button>
-
             </div>
 
 
-            <!-- EMOTE 2 -->
+            <div class="player-box">
+                <label>👤 PLAYER 2 UID</label>
+
+                <input
+                    id="uid2"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="15"
+                    placeholder="Player 2 UID"
+                >
+            </div>
+
+
+            <div class="player-box">
+                <label>👤 PLAYER 3 UID</label>
+
+                <input
+                    id="uid3"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="15"
+                    placeholder="Player 3 UID"
+                >
+            </div>
+
+
+            <div class="player-box">
+                <label>👤 PLAYER 4 UID</label>
+
+                <input
+                    id="uid4"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="15"
+                    placeholder="Player 4 UID"
+                >
+            </div>
+
+        </div>
+
+        <div class="small">
+            Player 1 required. Player 2–4 optional.
+        </div>
+
+                    id="uid1"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="15"
+                    placeholder="Player 1 UID"
+                >
+            </div>
+
+
+            <div class="player-box">
+                <label>👤 PLAYER 2 UID</label>
+
+                <input
+                    id="uid2"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="15"
+                    placeholder="Player 2 UID"
+                >
+            </div>
+
+
+            <div class="player-box">
+                <label>👤 PLAYER 3 UID</label>
+
+                <input
+                    id="uid3"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="15"
+                    placeholder="Player 3 UID"
+                >
+            </div>
+
+
+            <div class="player-box">
+                <label>👤 PLAYER 4 UID</label>
+
+                <input
+                    id="uid4"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="15"
+                    placeholder="Player 4 UID"
+                >
+            </div>
+
+        </div>
+
+        <div class="small">
+            Player 1 required. Player 2–4 optional.
+        </div>
 
             <div
                 class="card"
